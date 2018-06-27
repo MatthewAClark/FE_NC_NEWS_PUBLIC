@@ -4,7 +4,8 @@ class Input extends React.Component {
     state = {
         inputBody: "",
         inputTitle: "",
-        inputTopic: ""
+        inputTopic: "cooking",
+        inputTopicId: "",
     }
 
     handleBodyChange = (event) => {
@@ -24,6 +25,8 @@ class Input extends React.Component {
             inputTopic: event.target.value,
         })
     }
+
+
 
     render() {
         return (
@@ -46,18 +49,33 @@ class Input extends React.Component {
 
     newPost = (event) => {
         event.preventDefault()
-        console.log('Wish it worked:',this.state.inputTopic)
-        fetch('http://localhost:3000/api/topics/5b01a1fc5cc2d4354aec07dc/articles', {
-            headers: new Headers({ "Content-Type": "application/json" }),
-            method: 'POST',
-            body: JSON.stringify({
-                title: this.state.inputTitle,
-                body: this.state.inputBody
-            })
-        })
-            .then(res => res.json()).then(console.log)
-            .catch(console.log)
 
+        // Find the topic ID
+        fetch('http://localhost:3000/api/topics', {
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then(res => {
+                return res.find(elem => {
+                    return elem.slug === this.state.inputTopic
+                })
+            })
+            .then(res => {
+
+                //    Use topic ID to post an article
+                fetch(`http://localhost:3000/api/topics/${res._id}/articles`, {
+                    headers: new Headers({ "Content-Type": "application/json" }),
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title: this.state.inputTitle,
+                        body: this.state.inputBody
+                    })
+                })
+                    .then(res => res.json()).then(console.log)
+                    .catch(console.log)
+
+            })
     }
 }
 
