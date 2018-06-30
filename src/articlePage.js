@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import ArticleBody from './articleBody'
-import { Link } from "react-router-dom"
+import Comments from './comments'
+
 
 class ArticlePage extends Component {
     state = {
         articleData: [],
-        topicId: "",
-        articleId: ""
+        commentData: []
     }
 
 
@@ -20,24 +20,35 @@ class ArticlePage extends Component {
             .then(res => {
                 return res.json();
             })
-            .then(body => {
-                 this.setState({ articleData: body })
-           
+            .then(article => {
+                console.log('Art data id', this.state.articleData._id)
+                this.setState({ articleData: article })
+                fetch(`http://localhost:3000/api/articles/${this.state.articleData._id}/comments/`)
+                    .then(res => {
+                        return res.json();
+                    })
+                    .then(comments => {
+
+                        this.setState({ commentData: comments })
+
+                    })
             })
 
-        
+        console.log('articleData before comments', this.state.articleData)
     }
 
-    render () {
+    render() {
+
         return (
             <div>
-            
 
-<ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
-             
-        </div>
+
+                <ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
+                <Comments commentData={this.state.commentData} />
+
+            </div>
         )
-        
+
     }
 
 }
