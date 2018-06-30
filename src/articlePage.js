@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ArticleBody from './articleBody'
-import Comments from './comments'
+import CommentsArea from './commentsArea'
+import AddComment from './addComment'
 
 
 class ArticlePage extends Component {
@@ -9,19 +10,38 @@ class ArticlePage extends Component {
         commentData: []
     }
 
+    newComment = (event) => {
+        event.preventDefault()
+        console.log(this.state.articleData._id)
+
+       
+
+                //    Use article ID to post an article
+                fetch(`http://localhost:3000/api/articles/${this.state.articleData._id}/comments`, {
+                    headers: new Headers({ "Content-Type": "application/json" }),
+                    method: 'POST',
+                    body: JSON.stringify({
+                        body: this.state.inputBody
+                    })
+                })
+                    .then(res => res.json()).then(console.log)
+                    .catch(console.log)
+
+            
+    }
 
 
     componentDidMount() {
 
         // Display all articles on first load
-        console.log(this.props.match.params.articleid)
+       
         fetch(`http://localhost:3000/api/articles/${this.props.match.params.articleid}`)
 
             .then(res => {
                 return res.json();
             })
             .then(article => {
-                console.log('Art data id', this.state.articleData._id)
+              
                 this.setState({ articleData: article })
                 fetch(`http://localhost:3000/api/articles/${this.state.articleData._id}/comments/`)
                     .then(res => {
@@ -34,7 +54,7 @@ class ArticlePage extends Component {
                     })
             })
 
-        console.log('articleData before comments', this.state.articleData)
+        
     }
 
     render() {
@@ -44,7 +64,8 @@ class ArticlePage extends Component {
 
 
                 <ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
-                <Comments commentData={this.state.commentData} />
+                <CommentsArea commentData={this.state.commentData} />
+                <AddComment articleId={this.state.articleData._id}/>
 
             </div>
         )
