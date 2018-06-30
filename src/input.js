@@ -49,7 +49,10 @@ class Input extends React.Component {
 
     newPost = (event) => {
         event.preventDefault()
-
+        // this.props.updateState({
+        //     title: this.state.inputTitle,
+        //     body: this.state.inputBody
+        // })
         // Find the topic ID
         fetch('http://localhost:3000/api/topics', {
         })
