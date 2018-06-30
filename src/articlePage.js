@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import ArticleBody from './articleBody'
 import { Link } from "react-router-dom"
 
-class Article extends Component {
+class ArticlePage extends Component {
     state = {
         articleData: [],
         topicId: "",
@@ -30,12 +31,10 @@ class Article extends Component {
     render () {
         return (
             <div>
-            <h2>Article</h2>
+            
 
-             <div key={this.state.articleData._id}>
-                        <h2>{this.state.articleData.title}</h2>
-                        <p>{this.state.articleData.body}</p>
-                    </div>
+<ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
+             
         </div>
         )
         
@@ -43,4 +42,4 @@ class Article extends Component {
 
 }
 
-export default Article 
+export default ArticlePage 

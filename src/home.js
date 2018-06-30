@@ -2,18 +2,44 @@ import React, { Component } from 'react'
 import ArticleList from './articleList'
 import Input from './input'
 
-const Home = () => {
+class HomePage extends Component {
+    state = {
+        articleData: [],
+        
+    }
+
     
+
+    componentDidMount() {
+
+        //Display all articles on first load
+        
+        fetch("http://localhost:3000/api/articles/")
+
+            .then(res => {
+                return res.json();
+            })
+            .then(body => {
+                 this.setState({ articleData: body })
+           
+            })
+
+        
+        
+    }
+
+    render () {
         return (
             <div>
-                <h2>Welcome</h2>
-            <ArticleList/>
-            <Input />
+            
+        <ArticleList articleData={this.state.articleData}/>
+        <Input/>
+            
         </div>
         )
         
-    
+    }
 
 }
 
-export default Home 
+export default HomePage 

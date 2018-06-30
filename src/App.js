@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Article from './articles'
+import ArticlePage from './articlePage'
 import Home from './home'
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -40,7 +40,7 @@ class App extends Component {
 
 
           <Route exact path="/" component={Home} showArticle={this.showArticle} fetchAllArticles={this.fetchAllArticles} />
-          <Route exact path="/articles/:articleid" component={Article} />
+          <Route exact path="/articles/:articleid" component={ArticlePage} />
 
           
         </div>
