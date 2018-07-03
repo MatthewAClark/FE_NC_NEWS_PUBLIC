@@ -42,7 +42,7 @@ class AddComment extends React.Component {
                         body: this.state.inputBody
                     })
                 })
-                    .then(res => res.json()).then(console.log)
+                    .then(res => res.json()).then(this.props.addCommentToDOM)
                     .catch(console.log)
 
             

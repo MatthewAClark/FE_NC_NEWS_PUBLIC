@@ -42,7 +42,7 @@ class App extends Component {
 
           <Route exact path="/" component={Home} showArticle={this.showArticle} fetchAllArticles={this.fetchAllArticles} />
           <Route exact path="/articles/:articleid" component={ArticlePage} />
-          <Route exact path="/topics/:topicid/articles" component={TopicPage} />
+          <Route exact path="/topics/:topicid/articles" component={TopicPage } />
 
           
         </div>

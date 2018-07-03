@@ -10,26 +10,16 @@ class ArticlePage extends Component {
         commentData: []
     }
 
-    newComment = (event) => {
-        event.preventDefault()
-        console.log(this.state.articleData._id)
-
+    addCommentToDOM = (newComment) => {
+        console.log('we are at addCommentToDOM')
+        this.state.commentData.push(newComment)
+        
        
-
-                //    Use article ID to post an article
-                fetch(`http://localhost:3000/api/articles/${this.state.articleData._id}/comments`, {
-                    headers: new Headers({ "Content-Type": "application/json" }),
-                    method: 'POST',
-                    body: JSON.stringify({
-                        body: this.state.inputBody
-                    })
-                })
-                    .then(res => res.json()).then(console.log)
-                    .catch(console.log)
-
-            
+      this.setState({
+           commentData: this.state.commentData
+       })
+   
     }
-
 
     componentDidMount() {
 
@@ -65,7 +55,7 @@ class ArticlePage extends Component {
 
                 <ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
                 <CommentsArea commentData={this.state.commentData} />
-                <AddComment articleId={this.state.articleData._id}/>
+                <AddComment articleId={this.state.articleData._id} addCommentToDOM={this.addCommentToDOM}/>
 
             </div>
         )

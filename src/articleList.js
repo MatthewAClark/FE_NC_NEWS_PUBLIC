@@ -1,24 +1,72 @@
 import React, { Component } from 'react'
+import ArticleItem from './articleItem'
+import Input from './input'
 
 
-const ArticleList = (props) => {
-    return (
-        <div>
+class ArticleList extends Component {
+    state = {
+        articleData: [],
 
-            {props.articleData.map(article => {
-                return (
-                    <div key={article._id}>
-                        <h5><a href={"/articles/" + article._id}>{article.title}</a></h5>
+    }
+
+
+    componentDidMount() {
+
+        //Display all articles on first load
+        let fetchUrl;
+        if (this.props.topicId) {
+            fetchUrl = `http://localhost:3000/api/topics/${this.props.topicId}/articles`
+
+        } else { 
+            fetchUrl = "http://localhost:3000/api/articles/"
+        }
+            fetch(fetchUrl)
+
+                .then(res => {
+                    return res.json();
+                })
+                .then(body => {
+                    this.setState({ articleData: body })
+
+                })
+    }
+
+    addPostToDOM = (newPost) => {
+        this.state.articleData.push(newPost)
+        
+       
+      this.setState({
+           articleData: this.state.articleData
+       })
+   
+    }
+
+    
+
+
+    render() {
+        return (
+            <div>
+
+                {this.state.articleData.map(article => {
+                    return (
+                        <div key={article._id}>
+
+                            <ArticleItem article={article} addVoteUpToDOM = {this.addVoteUpToDOM}/>
+                            {/* <h5><a href={"/articles/" + article._id}>{article.title}</a></h5>
                        
                         
-                        <p><a href={"/topics/" + article.belongs_to._id + "/articles"}>{article.belongs_to.title}</a></p>
-                    </div>
-                )
-            })}
+                        <p><a href={"/topics/" + article.belongs_to._id + "/articles"}>{article.belongs_to.title}</a></p> */}
+                        </div>
+                    )
+                })}
 
-        </div>
-    )
+                <Input addPost={this.addPostToDOM} state={this.state}/>
 
+            </div>
+        )
+
+    }
 }
 
 

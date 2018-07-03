@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Input extends React.Component {
+class Input extends Component {
     state = {
         inputBody: "",
         inputTitle: "",
@@ -49,10 +49,6 @@ class Input extends React.Component {
 
     newPost = (event) => {
         event.preventDefault()
-        // this.props.updateState({
-        //     title: this.state.inputTitle,
-        //     body: this.state.inputBody
-        // })
         // Find the topic ID
         fetch('http://localhost:3000/api/topics', {
         })
@@ -65,7 +61,7 @@ class Input extends React.Component {
                 })
             })
             .then(res => {
-
+                
                 //    Use topic ID to post an article
                 fetch(`http://localhost:3000/api/topics/${res._id}/articles`, {
                     headers: new Headers({ "Content-Type": "application/json" }),
@@ -75,11 +71,13 @@ class Input extends React.Component {
                         body: this.state.inputBody
                     })
                 })
-                    .then(res => res.json()).then(console.log)
+                    .then(res => res.json()).then(this.props.addPostToDOM)
                     .catch(console.log)
 
             })
     }
 }
+
+
 
 export default Input

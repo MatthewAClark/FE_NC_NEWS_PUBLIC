@@ -2,41 +2,41 @@ import React, { Component } from 'react'
 import ArticleList from './articleList'
 import Input from './input'
 
-class HomePage extends Component {
-    state = {
-        articleData: [],
+class TopicPage extends Component {
+    // state = {
+    //     articleData: [],
         
-    }
+    // }
 
     
 
-    componentDidMount() {
+    // componentDidMount() {
 
-        //Display all articles on first load
+    //     //Display all articles on first load
         
-        fetch(`http://localhost:3000/api/topics/${this.props.match.params.topicid}/articles`)
+    //     fetch(`http://localhost:3000/api/topics/${this.props.match.params.topicid}/articles`)
 
-            .then(res => {
-                return res.json();
-            })
-            .then(body => {
-                 this.setState({ articleData: body })
+    //         .then(res => {
+    //             return res.json();
+    //         })
+    //         .then(body => {
+    //              this.setState({ articleData: body })
            
-            })
+    //         })
 
         
         
-    }
+    // }
 
     render () {
-        console.log(this.state.articleData)
+        
         return (
             
             <div>
                 {/* <h1>{this.state.articleData[0].belongs_to.title}</h1> */}
             
-        <ArticleList articleData={this.state.articleData}/>
-        <Input/>
+        <ArticleList topicId={this.props.match.params.topicid}/>
+        {/* <Input/> */}
             
         </div>
         )
@@ -45,4 +45,4 @@ class HomePage extends Component {
 
 }
 
-export default HomePage 
+export default TopicPage 
