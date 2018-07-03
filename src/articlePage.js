@@ -11,12 +11,22 @@ class ArticlePage extends Component {
     }
 
     addCommentToDOM = (newComment) => {
-        console.log('we are at addCommentToDOM')
-        this.state.commentData.push(newComment)
         
        
       this.setState({
-           commentData: this.state.commentData
+           commentData: [ ...this.state.commentData, newComment ]
+       })
+   
+    }
+
+    removeCommentFromDOM = (index) => {
+        const copyArray = [...this.state.commentData]
+       
+         copyArray.splice(index, 1)
+        
+       
+      this.setState({
+           commentData: copyArray
        })
    
     }
@@ -54,7 +64,7 @@ class ArticlePage extends Component {
 
 
                 <ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
-                <CommentsArea commentData={this.state.commentData} />
+                <CommentsArea commentData={this.state.commentData} removeCommentFromDOM={this.removeCommentFromDOM}/>
                 <AddComment articleId={this.state.articleData._id} addCommentToDOM={this.addCommentToDOM}/>
 
             </div>

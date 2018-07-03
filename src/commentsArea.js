@@ -6,16 +6,13 @@ const CommentsArea = (props) => {
             <div>
                 
             <h2>Comments</h2>
-            {props.commentData.map(comment => {
+            {props.commentData.map((comment, index) => {
                 
                 return (
                     
                      <div key={comment._id}>
-                    <Comment comment={comment}/>
-                    {/* //     <p>{comment.body}</p>
-                    //     <p>votes: {comment.votes}</p>
-                    //     <button onClick={(e) => voteUp(e)} value={comment._id}>Vote up</button>
-                    //     <button>Vote down</button> */}
+                    <Comment comment={comment} index={index} removeCommentFromDOM={props.removeCommentFromDOM}/>
+                   
                     </div>
                 )
             })}

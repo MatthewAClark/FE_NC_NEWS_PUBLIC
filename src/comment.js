@@ -34,17 +34,19 @@ voteDown = () => {
         .catch(console.log)
 }
 
-deleteComment = () => {
+deleteComment = (index) => {
   
      fetch(`http://localhost:3000/api/comments/${this.props.comment._id}`, {
         headers: new Headers({ "Content-Type": "application/json" }),
          method: 'DELETE'
      })
-        .then(res => res.json()).then(console.log)
+        .then(res => res.json()).then(() => {
+            this.props.removeCommentFromDOM(index)})
         .catch(console.log)
 }
     
     render() {
+        
         return (
             
             <div>
@@ -52,7 +54,7 @@ deleteComment = () => {
                 <p>votes: {this.state.votes}</p>
                 <button onClick={this.voteUp}>Vote up</button>
                 <button onClick={this.voteDown}>Vote down</button>
-                <button onClick={this.deleteComment}>Delete comment</button>
+                <button onClick={() => this.deleteComment(this.props.index)}>Delete comment</button>
             </div>
         )
     }

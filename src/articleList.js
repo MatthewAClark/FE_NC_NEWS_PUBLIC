@@ -32,11 +32,8 @@ class ArticleList extends Component {
     }
 
     addPostToDOM = (newPost) => {
-        this.state.articleData.push(newPost)
-        
-       
       this.setState({
-           articleData: this.state.articleData
+           articleData: [...this.state.articleData, newPost]
        })
    
     }
@@ -61,7 +58,7 @@ class ArticleList extends Component {
                     )
                 })}
 
-                <Input addPost={this.addPostToDOM} state={this.state}/>
+                <Input addPostToDOM={this.addPostToDOM} state={this.state}/>
 
             </div>
         )
