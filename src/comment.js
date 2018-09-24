@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import api_url from "./apiConfig";
 
 class Comment extends Component {
 
@@ -8,7 +9,7 @@ class Comment extends Component {
 
 voteUp = () => {
     
-    fetch(`http://localhost:3000/api/comments/${this.props.comment._id}?vote=up`, {
+    fetch(`${api_url}/api/comments/${this.props.comment._id}?vote=up`, {
         headers: new Headers({ "Content-Type": "application/json" }),
         method: 'PUT'
     })
@@ -22,7 +23,7 @@ voteUp = () => {
 
 voteDown = () => {
    
-    fetch(`http://localhost:3000/api/comments/${this.props.comment._id}?vote=down`, {
+    fetch(`${api_url}/api/comments/${this.props.comment._id}?vote=down`, {
         headers: new Headers({ "Content-Type": "application/json" }),
         method: 'PUT'
     })
@@ -36,7 +37,7 @@ voteDown = () => {
 
 deleteComment = (index) => {
   
-     fetch(`http://localhost:3000/api/comments/${this.props.comment._id}`, {
+     fetch(`${api_url}/api/comments/${this.props.comment._id}`, {
         headers: new Headers({ "Content-Type": "application/json" }),
          method: 'DELETE'
      })

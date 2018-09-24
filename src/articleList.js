@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ArticleItem from './articleItem'
 import Input from './input'
-
+import api_url from "./apiConfig";
 
 class ArticleList extends Component {
     state = {
@@ -15,10 +15,10 @@ class ArticleList extends Component {
         //Display all articles on first load
         let fetchUrl;
         if (this.props.topicId) {
-            fetchUrl = `http://localhost:3000/api/topics/${this.props.topicId}/articles`
+            fetchUrl = `${api_url}/api/topics/${this.props.topicId}/articles`
 
         } else { 
-            fetchUrl = "http://localhost:3000/api/articles/"
+            fetchUrl = `${api_url}/api/articles/`
         }
             fetch(fetchUrl)
 

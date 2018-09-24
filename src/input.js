@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import api_url from "./apiConfig";
 
 class Input extends Component {
     state = {
@@ -50,7 +51,7 @@ class Input extends Component {
     newPost = (event) => {
         event.preventDefault()
         // Find the topic ID
-        fetch('http://localhost:3000/api/topics', {
+        fetch(`${api_url}/api/topics`, {
         })
             .then(res => {
                 return res.json();
@@ -63,7 +64,7 @@ class Input extends Component {
             .then(res => {
                 
                 //    Use topic ID to post an article
-                fetch(`http://localhost:3000/api/topics/${res._id}/articles`, {
+                fetch(`${api_url}/api/topics/${res._id}/articles`, {
                     headers: new Headers({ "Content-Type": "application/json" }),
                     method: 'POST',
                     body: JSON.stringify({

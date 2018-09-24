@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ArticleBody from './articleBody'
 import CommentsArea from './commentsArea'
 import AddComment from './addComment'
+import api_url from "./apiConfig";
 
 
 class ArticlePage extends Component {
@@ -35,7 +36,7 @@ class ArticlePage extends Component {
 
         // Display all articles on first load
        
-        fetch(`http://localhost:3000/api/articles/${this.props.match.params.articleid}`)
+        fetch(`${api_url}/api/articles/${this.props.match.params.articleid}`)
 
             .then(res => {
                 return res.json();
@@ -43,7 +44,7 @@ class ArticlePage extends Component {
             .then(article => {
               
                 this.setState({ articleData: article })
-                fetch(`http://localhost:3000/api/articles/${this.state.articleData._id}/comments/`)
+                fetch(`${api_url}/api/articles/${this.state.articleData._id}/comments/`)
                     .then(res => {
                         return res.json();
                     })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import api_url from "./apiConfig";
 
 class ArticleItem extends Component {
     state = {
@@ -8,7 +8,7 @@ class ArticleItem extends Component {
 
     voteUp = () => {
 
-        fetch(`http://localhost:3000/api/articles/${this.props.article._id}?vote=up`, {
+        fetch(`${api_url}/api/articles/${this.props.article._id}?vote=up`, {
             headers: new Headers({ "Content-Type": "application/json" }),
             method: 'PUT'
         })
@@ -23,7 +23,7 @@ class ArticleItem extends Component {
 
     voteDown = () => {
 
-        fetch(`http://localhost:3000/api/articles/${this.props.article._id}?vote=down`, {
+        fetch(`${api_url}/api/articles/${this.props.article._id}?vote=down`, {
             headers: new Headers({ "Content-Type": "application/json" }),
             method: 'PUT'
         })

@@ -3,6 +3,7 @@ import ArticlePage from './articlePage'
 import Home from './home'
 import TopicPage from './topicPage'
 import { BrowserRouter, Route } from "react-router-dom";
+import api_url from "./apiConfig";
 
 class App extends Component {
   state = {
@@ -14,7 +15,7 @@ class App extends Component {
   fetchAllArticles = () => {
     // Display all articles on first load
    
-    fetch("http://localhost:3000/api/articles/")
+    fetch(`${api_url}/api/articles/`)
 
       .then(res => {
         return res.json();
