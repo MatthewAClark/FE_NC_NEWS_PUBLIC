@@ -20,7 +20,7 @@ class ArticleList extends Component {
 
         } else { 
             console.log('no here')
-            console.log('api_url')
+            console.log(api_url)
             fetchUrl = `${api_url}/api/articles/`
         }
             fetch(fetchUrl)

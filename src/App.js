@@ -12,7 +12,7 @@ class App extends Component {
     showArticleId: ""
   }
 
-  console.log(api_url)
+ 
 
   fetchAllArticles = () => {
     // Display all articles on first load
