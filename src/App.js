@@ -14,9 +14,10 @@ class App extends Component {
 
   fetchAllArticles = () => {
     // Display all articles on first load
+    console.log(api_url)
    
     fetch(`${api_url}/api/articles/`)
-
+    
       .then(res => {
         return res.json();
       })

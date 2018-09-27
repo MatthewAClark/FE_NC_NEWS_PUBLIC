@@ -15,9 +15,12 @@ class ArticleList extends Component {
         //Display all articles on first load
         let fetchUrl;
         if (this.props.topicId) {
+            console.log('here')
             fetchUrl = `${api_url}/api/topics/${this.props.topicId}/articles`
 
         } else { 
+            console.log('no here')
+            console.log('api_url')
             fetchUrl = `${api_url}/api/articles/`
         }
             fetch(fetchUrl)
