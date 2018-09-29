@@ -61,7 +61,7 @@ class ArticlePage extends Component {
     render() {
 
         return (
-            <div>
+            <div className='card'>
 
 
                 <ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />

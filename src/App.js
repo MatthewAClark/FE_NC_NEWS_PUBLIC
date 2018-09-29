@@ -5,6 +5,7 @@ import TopicPage from './topicPage'
 import { BrowserRouter, Route } from "react-router-dom";
 import api_url from "./apiConfig";
 
+
 class App extends Component {
   state = {
     articleData: [],
@@ -38,10 +39,14 @@ class App extends Component {
   render() {
     return (
       < BrowserRouter>
-        <div>
-          <header>
-            <h1>Northcoders News</h1>
+        <div className = 'container'>
+        <section className = 'hero'>
+        <div className = 'hero-body'>
+           <header>
+            <h1 className = 'title is-1'>Northcoders News</h1>
           </header>
+          </div>
+          </section>
 
 
           <Route exact path="/" component={Home} showArticle={this.showArticle} fetchAllArticles={this.fetchAllArticles} />

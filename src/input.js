@@ -31,19 +31,54 @@ class Input extends Component {
 
     render() {
         return (
-            <div>
-                <h2>New Post</h2>
+            <div className='card'>
+
+                <h2 className='title is-3'>New Post</h2>
+
                 <form>
-                    <select name="topics" onChange={this.handleTopicChange}>
-                        <option value="cooking" >Cooking</option>
-                        <option value="coding">Coding</option>
-                        <option value="football">Football</option>
-                    </select>
-                    <input name="newtitle" onChange={this.handleTitleChange} placeholder="Enter title" value={this.state.inputTitle} />
-                    <textarea name="newpost" onChange={this.handleBodyChange} placeholder="Enter post" value={this.state.inputBody} />
-                    <button className="btn btn-default" type="submit" disabled={this.state.inputBody.length > 120} onClick={this.newPost}>Submit</button>
-                    <p>Characters left: {120 - this.state.inputBody.length}</p>
+                    <div className='level-left'>
+                        <div>
+
+                            <div className='field is-horizontal'>
+
+
+                                <label className='label field-label'>Select Topic</label>
+
+                                <div className='control field-body'>
+                                    <select className='select' name="topics" onChange={this.handleTopicChange}>
+                                        <option value="cooking" >Cooking</option>
+                                        <option value="coding">Coding</option>
+                                        <option value="football">Football</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className='field is-horizontal'>
+
+                                <label className='label field-label'>Title</label>
+                                <div className='control field-body'>
+                                    <input name="newtitle" className='input' onChange={this.handleTitleChange} placeholder="Enter title" value={this.state.inputTitle} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='field is-horizontal'>
+                            <label className='label field-label'>Post</label>
+                            <div>
+                                <div className='control field-body'>
+                                    <textarea name="newpost" className='textarea' onChange={this.handleBodyChange} placeholder="Enter post" value={this.state.inputBody} />
+                                </div>
+                                <p>Characters left: {120 - this.state.inputBody.length}</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                
                 </form>
+
+                <div className='level-right'>
+                    <button className="btn btn-default" type="submit" disabled={this.state.inputBody.length > 120} onClick={this.newPost}>Submit</button>
+                </div>
             </div>
         );
     }
@@ -62,7 +97,7 @@ class Input extends Component {
                 })
             })
             .then(res => {
-                
+
                 //    Use topic ID to post an article
                 fetch(`${api_url}/api/topics/${res._id}/articles`, {
                     headers: new Headers({ "Content-Type": "application/json" }),

@@ -15,12 +15,10 @@ class ArticleList extends Component {
         //Display all articles on first load
         let fetchUrl;
         if (this.props.topicId) {
-            console.log('here')
+            
             fetchUrl = `${api_url}/api/topics/${this.props.topicId}/articles`
 
-        } else { 
-            console.log('no here')
-            console.log(api_url)
+        } else {             
             fetchUrl = `${api_url}/api/articles/`
         }
             fetch(fetchUrl)
@@ -29,6 +27,7 @@ class ArticleList extends Component {
                     return res.json();
                 })
                 .then(body => {
+                    body = body.reverse()
                     this.setState({ articleData: body })
 
                 })
@@ -36,7 +35,7 @@ class ArticleList extends Component {
 
     addPostToDOM = (newPost) => {
       this.setState({
-           articleData: [...this.state.articleData, newPost]
+           articleData: [newPost, ...this.state.articleData ]
        })
    
     }
@@ -46,22 +45,20 @@ class ArticleList extends Component {
 
     render() {
         return (
-            <div>
-
+            <div >
+<Input addPostToDOM={this.addPostToDOM} state={this.state}/>
                 {this.state.articleData.map(article => {
                     return (
+
                         <div key={article._id}>
 
                             <ArticleItem article={article} addVoteUpToDOM = {this.addVoteUpToDOM}/>
-                            {/* <h5><a href={"/articles/" + article._id}>{article.title}</a></h5>
                        
-                        
-                        <p><a href={"/topics/" + article.belongs_to._id + "/articles"}>{article.belongs_to.title}</a></p> */}
                         </div>
                     )
                 })}
 
-                <Input addPostToDOM={this.addPostToDOM} state={this.state}/>
+                
 
             </div>
         )
