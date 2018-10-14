@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api_url from "./apiConfig";
+import './style.css';
 
 class Comment extends Component {
 
@@ -49,14 +50,28 @@ deleteComment = (index) => {
     render() {
         
         return (
-            
-            <div>
-                <p>{this.props.comment.body}</p>
-                <p>votes: {this.state.votes}</p>
-                <button onClick={this.voteUp}>Vote up</button>
-                <button onClick={this.voteDown}>Vote down</button>
-                <button onClick={() => this.deleteComment(this.props.index)}>Delete comment</button>
+        
+            <div className='card card-background-color'>
+
+            <div className='columns'>
+            <div className='column vote is-1'> 
+                    <a className='fas fa-thumbs-up voteUp' onClick={this.voteUp}></a>
+                    <p> {this.state.votes}</p>
+                    <a className='fas fa-thumbs-down voteDown' onClick={this.voteDown}></a>
+                </div>
+                <div className='column'>
+   
+<p>{this.props.comment.body}</p>
+</div>
+<div className='column is-1'>
+<a className='fas fa-trash' onClick={() => this.deleteComment(this.props.index)}></a>
+    </div>
             </div>
+            
+        </div>
+
+
+         
         )
     }
 }

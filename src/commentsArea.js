@@ -1,16 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Comment from './comment'
 
 const CommentsArea = (props) => {
         return (
             <div>
-                
-            <h2>Comments</h2>
+                <section className='hero is-dark is-small'>
+                <div className = 'hero-body'>
+           
+            <h1 className = 'subtitle'>Comments</h1>
+          
+          </div>
+        </section>
             {props.commentData.map((comment, index) => {
                 
                 return (
                     
-                     <div key={comment._id}>
+                     <div className='card' key={comment._id}>
                     <Comment comment={comment} index={index} removeCommentFromDOM={props.removeCommentFromDOM}/>
                    
                     </div>

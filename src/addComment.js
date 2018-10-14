@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React from 'react'
+import api_url from "./apiConfig";
 
 class AddComment extends React.Component {
     state = {
@@ -18,16 +19,36 @@ class AddComment extends React.Component {
 
     render() {
         return (
-            <div>
-                <h2>New Comment</h2>
-                <form>
+            <form>
+                <div className='columns'>
+                <div className='column is-half'>
+            <div className='field'>
+               
+               
+                   {/* <div className='field-label'> */}
+                   <label className='label'>New Comment</label>
+                   {/* </div> */}
                    
+                    {/* <div className='field-body'> */}
+                    <div className='field'>
+
+<textarea className='textarea' name="comment" onChange={this.handleBodyChange} placeholder="Enter comment" value={this.state.inputBody} />
+</div>
+                    {/* </div> */}
+</div>
+<div className='field'>
+                    
+                   <div className='field-label'></div>
+                    <p className='field-body'>Characters left: {120 - this.state.inputBody.length}</p>
+
+                    </div>
                    
-                    <textarea name="comment" onChange={this.handleBodyChange} placeholder="Enter comment" value={this.state.inputBody} />
-                    <button className="btn btn-default" type="submit" disabled={this.state.inputBody.length > 120} onClick={this.newComment}>Submit</button>
-                    <p>Characters left: {120 - this.state.inputBody.length}</p>
-                </form>
             </div>
+            <div className = 'column'>
+                    <button className="btn btn-default" type="submit" disabled={this.state.inputBody.length > 120} onClick={this.newComment}>Submit</button>
+                </div>
+            </div>
+            </form>
         );
     }
 
@@ -35,7 +56,7 @@ class AddComment extends React.Component {
         event.preventDefault()
         
                 //    Use article ID to post an article
-                fetch(`http://localhost:3000/api/articles/${this.props.articleId}/comments`, {
+                fetch(`${api_url}/api/articles/${this.props.articleId}/comments`, {
                     headers: new Headers({ "Content-Type": "application/json" }),
                     method: 'POST',
                     body: JSON.stringify({

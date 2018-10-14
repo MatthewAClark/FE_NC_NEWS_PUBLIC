@@ -5,6 +5,7 @@ import AddComment from './addComment'
 import api_url from "./apiConfig";
 
 
+
 class ArticlePage extends Component {
     state = {
         articleData: [],
@@ -61,14 +62,14 @@ class ArticlePage extends Component {
     render() {
 
         return (
-            <div className='card'>
+            <section className='card'>
 
 
                 <ArticleBody key={this.state.articleData._id} title={this.state.articleData.title} body={this.state.articleData.body} />
                 <CommentsArea commentData={this.state.commentData} removeCommentFromDOM={this.removeCommentFromDOM}/>
                 <AddComment articleId={this.state.articleData._id} addCommentToDOM={this.addCommentToDOM}/>
 
-            </div>
+            </section>
         )
 
     }

@@ -1,0 +1,24 @@
+/* div {
+    border: 2pt solid black;
+} */
+
+.vote {
+    
+   text-align: center;
+}
+
+.articleItem {
+    margin: 10px;
+    text-align: left;
+}
+
+body {
+   background-color: #D9DEE6;
+    /* background-color: pink; */
+}
+
+.voteBox {
+    background-color: #F7F8FA;
+   width: 100px;
+}
+

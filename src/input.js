@@ -36,8 +36,8 @@ class Input extends Component {
                 <h2 className='title is-3'>New Post</h2>
 
                 <form>
-                    <div className='level-left'>
-                        <div>
+                    <div className='columns'>
+                        <div className = 'column is-one-third'>
 
                             <div className='field is-horizontal'>
 
@@ -61,15 +61,17 @@ class Input extends Component {
                             </div>
                         </div>
 
-                        <div className='field is-horizontal'>
-                            <label className='label field-label'>Post</label>
+                    <div className='column is-two-thirds'>
+                        <div className='field '>
+                            <label className='label '>Post</label>
                             <div>
-                                <div className='control field-body'>
+                                <div className='control '>
                                     <textarea name="newpost" className='textarea' onChange={this.handleBodyChange} placeholder="Enter post" value={this.state.inputBody} />
                                 </div>
                                 <p>Characters left: {120 - this.state.inputBody.length}</p>
                             </div>
 
+                        </div>
                         </div>
                     </div>
 

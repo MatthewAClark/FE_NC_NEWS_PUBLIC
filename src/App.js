@@ -4,6 +4,8 @@ import Home from './home'
 import TopicPage from './topicPage'
 import { BrowserRouter, Route } from "react-router-dom";
 import api_url from "./apiConfig";
+// import style from "./style.css"
+
 
 
 class App extends Component {
@@ -39,11 +41,14 @@ class App extends Component {
   render() {
     return (
       < BrowserRouter>
+      <div className='body'>
+      
         <div className = 'container'>
-        <section className = 'hero'>
+        <section className = 'hero is-primary'>
         <div className = 'hero-body'>
            <header>
-            <h1 className = 'title is-1'>Northcoders News</h1>
+           
+            <a href={"/"} className = 'title is-1'>Northcoders News</a>
           </header>
           </div>
           </section>
@@ -54,6 +59,8 @@ class App extends Component {
           <Route exact path="/topics/:topicid/articles" component={TopicPage } />
 
           
+        </div>
+        
         </div>
       </ BrowserRouter>
     );

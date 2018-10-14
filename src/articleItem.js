@@ -42,21 +42,24 @@ class ArticleItem extends Component {
 
             <div className='card card-background-color'>
 
-                <div className='level-left vote'>
-                <div className='voteBox'> 
-                        <a className='fas fa-thumbs-up voteUp' onClick={this.voteUp}></a>
-                        <p>votes: {this.state.votes}</p>
-                        <a className='fas fa-thumbs-down voteDown' onClick={this.voteDown}></a>
-                    </div>
-                    <div className='articleItem'>
-                    <h5><a className='subtitle' href={"/articles/" + this.props.article._id}>{this.props.article.title}</a></h5>
+            <div className='columns'>
+            <div className='column vote is-1'> 
+                    <a className='fas fa-thumbs-up voteUp' onClick={this.voteUp}></a>
+                    <p>{this.state.votes}</p>
+                    <a className='fas fa-thumbs-down voteDown' onClick={this.voteDown}></a>
+                </div>
+                <div className='column'>
+   
+                <h5><a className='subtitle' href={"/articles/" + this.props.article._id}>{this.props.article.title}</a></h5>
                     
                     <p><a className=''href={"/topics/" + this.props.article.belongs_to._id + "/articles"}>{this.props.article.belongs_to.title}</a></p>
-                </div>
+</div>
 
-                </div>
-                
             </div>
+            
+        </div>
+
+
         )
     }
 }
