@@ -15,9 +15,7 @@ class App extends Component {
     showArticleId: ""
   }
 
- 
-
-  fetchAllArticles = () => {
+   fetchAllArticles = () => {
     // Display all articles on first load
     
    
