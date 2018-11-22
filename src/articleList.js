@@ -46,7 +46,8 @@ class ArticleList extends Component {
     render() {
         return (
             <div >
-<Input addPostToDOM={this.addPostToDOM} state={this.state}/>
+               
+
                 {this.state.articleData.map(article => {
                     return (
 
@@ -58,7 +59,7 @@ class ArticleList extends Component {
                     )
                 })}
 
-                
+                 <div><Input addPostToDOM={this.addPostToDOM} state={this.state}/></div>
 
             </div>
         )

@@ -31,7 +31,7 @@ class Input extends Component {
 
     render() {
         return (
-            <div className='card'>
+            <div className='card newpost'>
 
                 <h2 className='title is-3'>New Post</h2>
 
