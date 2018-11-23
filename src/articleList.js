@@ -29,8 +29,9 @@ class ArticleList extends Component {
                 .then(body => {
                     body = body.reverse()
                     this.setState({ articleData: body })
-
+                    console.log('here is body', body)
                 })
+               
     }
 
     addPostToDOM = (newPost) => {
