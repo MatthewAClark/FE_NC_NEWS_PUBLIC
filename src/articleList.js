@@ -45,6 +45,8 @@ class ArticleList extends Component {
 
 
     render() {
+       
+        if(this.state.articleData.length > 0) {
         return (
             <div >
                
@@ -64,8 +66,15 @@ class ArticleList extends Component {
 
             </div>
         )
-
+    } else {
+        return (
+        <div>
+            <p>no data</p>
+            <Input addPostToDOM={this.addPostToDOM} state={this.state}/>
+        </div>
+        )}
     }
+    
 }
 
 
