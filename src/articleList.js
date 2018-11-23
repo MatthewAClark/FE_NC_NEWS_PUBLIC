@@ -11,7 +11,7 @@ class ArticleList extends Component {
 
 
     componentDidMount() {
-
+        console.log('in component did mount')
         //Display all articles on first load
         let fetchUrl;
         if (this.props.topicId) {
